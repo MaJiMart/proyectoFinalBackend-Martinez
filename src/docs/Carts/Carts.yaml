@@ -1,0 +1,279 @@
+paths:
+  /api/carts/:
+    get:
+      summary: List carts
+      tags:
+        - Carts
+      responses:
+        200:
+          description: Carts successfully obtained from the database
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        500:
+          description: Internal Server Error
+    post:
+      summary: Create cart
+      tags:
+        - Carts
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/requestBodies/createCart'
+      responses:
+        201:
+          description: Cart successfully created 
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/requestBodies/createCart'
+        400:
+          description: Fields required
+        500:
+          description: Internal Server Error
+          
+  /api/carts/{cid}:
+    get:
+      summary: Allows to obtain a cart by its identifier
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cart successfully obtained from the database
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/schemas/Cart'
+        404:
+          description: Cart not found
+        500:
+          description: Internal Server Error
+    put:
+      summary: Allows to modifying a cart by its id
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/requestBodies/updateCart'
+      responses:
+        200:
+          description: Cart successfully updated
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/requestBodies/updateCart'
+        404:
+          description: Product not found
+        500:
+          description: Internal Server Error
+    delete:
+      summary: Allows to remove all products from the cart
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: All the products have been successfully removed from the cart
+        404:
+          description: Cart not found
+        500:
+          description: Internal Server Error
+
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Allows to generate the purchase order
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Purchase completed successfully
+        404:
+          description: Cart not found
+        500:
+          description: Internal Server Error
+
+  /api/carts/{cid}/products/{pid}:
+    put:
+      summary: Allows to modifying a quantity of the product on the cart 
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/requestBodies/updateQuantity'
+      responses:
+        200:
+          description: Product quantity successfully updated.
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/requestBodies/updateQuantity'
+        404:
+          description: Product not found
+        500:
+          description: Internal Server Error
+    post:
+      summary: Allows to add the product whose ID is in the path to the cart
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product added to cart successfully
+        404:
+          description: Product not found
+        500:
+          description: Internal Server Error
+    delete:
+      summary: Allows to delete a product whose ID is in the path to the cart
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: Cart ID
+          schema:
+            type: string
+        - in: path
+          name: pid
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product removed from cart successfully
+        404:
+          description: Product not found
+        500:
+          description: Internal Server Error    
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Product ID generated by mongodb
+        products:
+          type: array
+          description: array of products added to cart
+          product:
+            type: string
+            description: product ID
+          quantity:
+            type: number
+            description: quantity of added product
+      example:
+        _id: 65b8dedd0178a7db5354d443
+        products: 
+          product: 654b5e7156d479b6859e7dd8
+          quantity: 2
+        
+  
+  requestBodies:
+    createCart:
+      type: object
+      properties:
+        products:
+          type: array
+          description: Array of products.
+
+      example:
+        products: []
+  
+    updateCart:
+      type: array
+      properties:
+        products:
+          type: array
+          description: array of products added to cart
+          product:
+            type: string
+            description: product ID
+          quantity:
+            type: number
+            description: quantity of added product
+          
+      example:
+        products: 
+          product: 654b5e5b78d479b6759e7dcc
+          quantity: 2
+
+    updateQuantity:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: quantity of added product
+
+      example:
+        quantity: 2
+
+    
+          
+        

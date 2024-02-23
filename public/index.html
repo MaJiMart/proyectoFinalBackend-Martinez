@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Ecofriendly Shop</title>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Welcome to the shop</h1>
+    <p>Here you will find ecofriendly products as well as advice that will help you
+      on a daily basis. We hope you enjoy this space</p>
+    <article>
+      <form id='formLogin'>
+        <header>
+          <h3>Login:</h3>
+        </header>
+        <input type='email' id='inputEmail' name='email' placeholder='Email' required />
+        <input type='password' id='inputPass' name='password' placeholder='Password' required />
+        <footer>
+          <input type='submit' value='Login' class='outline' id='btngral' />
+          <div id='recpass'>
+            <a href='/recoverPass.html' >Forgot your password?</a>
+            </div>
+        </footer>
+        <div id='singUp'>
+          <h3>Register:</h3>
+            <a href='/register.html' >Sing up here!</a>
+            <!-- <a href='/api/sessions/github'sol role='button' class='outline'>GitHub</a> -->
+        </div>
+      </form>
+    </article>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
