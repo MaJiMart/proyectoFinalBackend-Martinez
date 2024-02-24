@@ -1,5 +1,6 @@
 import UserService from '../services/userService.js';
 import { NotFound, Exception } from '../utilities.js';
+import MailService from '../services/mailService.js';
 
 
 export default class UserController {
@@ -42,7 +43,27 @@ export default class UserController {
 
   static async deleteInactiveUsers() {
     try {
-      
+      const users = await UserController.getUsers()
+      // cutoffDate -> el número 2 de la resta es la cantidad de días solicitada desde la última conexión
+      const cutoffDate = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
+      const inactiveUsers = users.filter(user => user.last_connection < cutoffDate)
+      inactiveUsers.forEach(user => {
+        MailService.sendEmail(
+            user.email,
+            'Deleted account',
+            `
+            <div>
+              <h1>Hi ${user.first_name}</h1>
+              <p>We have detected that you have not accessed our store for a while, so we have decided to delete your profile.</p>
+              <p>Hope you come back soon, we would love for you to join us again.</p>
+              <br>Greetings,</br>
+            </div>
+            `
+          );
+        UserController.deleteUser(user._id)
+        //console.log(`borrar usuario con id: ${user._id}`);
+        
+      });
     } catch (error) {
       throw new Exception(`Error deleting users: ${error.message}`, 500);
     }

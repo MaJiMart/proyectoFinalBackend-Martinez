@@ -75,10 +75,9 @@ router.put('/users/:uid', authenticationMidd('jwt'), authorizationMidd('admin'),
 
 router.delete('/users', authenticationMidd('jwt'), authorizationMidd('admin'), async (req, res, next) => {
   try {
-    
     await UserController.deleteInactiveUsers();
-    req.logger.info('Inactive users successfully deleted');
-    res.status(204).end();
+    req.logger.info(`The administrator with ID: ${req.user.id} has deleted inactive users successfully`);
+    res.status(204).json({ message: 'Inactive users deleted successfully' });
   } catch (error) {
     next(res.status(error.statusCode || 500).json({ message: error.message }));
   }

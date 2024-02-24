@@ -33,7 +33,7 @@ const userSchema = new Schema(
       type: [docSchema],
       default: [],
     },
-    last_connection: { type: Date, default: Date.now }
+    last_connection: { type: Date, default: null }
   },
   { timestamps: true, versionKey: false }
 );
