@@ -7,7 +7,7 @@ router.get('/current', authenticationMidd('jwt'), (req, res) => {
   res.status(200).json(req.user)
 })
 
-router.get('/admin', authenticationMidd('jwt'), authorizationMidd('admin'), (req, res) => {
+router.get('/admin-users', authenticationMidd('jwt'), authorizationMidd('admin'), (req, res) => {
   res.status(200).json({ success: true})
 })
 
