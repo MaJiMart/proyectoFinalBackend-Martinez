@@ -23,10 +23,6 @@ export default class UserDao {
     return UserModel.updateOne({ _id: uid }, { $set: data });
   }
 
-  deleteInactiveUsers() {
-    return UserModel.deleteMany();
-  }
-
   deleteUser(uid) {
     return UserModel.deleteOne({ _id: uid });
   }

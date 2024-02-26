@@ -38,11 +38,4 @@ const userSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-/* userSchema
-  .pre('find', function () {
-    this.populate('cart.cartId');
-  })
-  .pre('findById', function () {
-    this.populate('cart.cartId');
-  }); */
 export default mongoose.model('User', userSchema);

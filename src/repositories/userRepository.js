@@ -27,11 +27,7 @@ export default class UserRepository {
   async updateUser(uid, data) {
     return await this.dao.updateUser(uid, data);
   }
-
-  async deleteInactiveUsers() {
-    return 
-  }
-
+  
   async deleteUser(uid) {
     return await this.dao.deleteUser(uid);
   }
