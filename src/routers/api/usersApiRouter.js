@@ -1,9 +1,6 @@
 import { Router } from 'express';
 import { createHash, uploader } from '../../utilities.js';
-import {
-  authenticationMidd,
-  authorizationMidd,
-} from '../../middlewares/authMiddlewares.js';
+import { authenticationMidd, authorizationMidd } from '../../middlewares/authMiddlewares.js';
 import UserController from '../../controllers/userContoller.js';
 
 const router = Router();
