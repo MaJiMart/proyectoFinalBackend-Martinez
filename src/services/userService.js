@@ -23,10 +23,6 @@ export default class UserService {
     return userRepository.updateUser(uid, payload);
   }
 
-  static deleteInactiveUsers() {
-    return 
-  }
-
   static deleteUser(uid) {
     return userRepository.deleteUser(uid);
   }
