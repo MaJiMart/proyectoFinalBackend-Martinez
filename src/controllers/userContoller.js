@@ -18,7 +18,7 @@ export default class UserController {
     }
   }
 
-  static async createUser({ first_name, last_name, email, age, password, role }) {
+  static async createUser({ first_name, last_name, email, age, password, role, cart }) {
     try {
       if (!first_name || !last_name || !email || !password) {
         logger.error('All fields are required to successfully register the user');
@@ -30,13 +30,15 @@ export default class UserController {
         throw new BadRequest('User already registered', 400);
       }
       const cart = await CartController.createCart();
+
       return await UserService.createUser({
         first_name,
         last_name,
         email,
         password,
         age,
-        role
+        role,
+        cart: ({cart: cart._id})
       });
     } catch (error) {
       throw new Exception(`Error creating user: ${error.message}`, 500);

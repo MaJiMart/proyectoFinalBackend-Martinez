@@ -31,14 +31,14 @@ router.post('/recover-password', async (req, res, next) => {
         <div>
           <h1>Hi ${user.first_name}</h1>
           <p>With all the passwords we currently have, it is normal that we forget some, don't worry, to recover it click on the following link:</p>
-          <a href="http://localhost:8080/newPass.html?token=${recPassToken}">Recover Password</a>
+          <a href="http://localhost:8080/new-password?token=${recPassToken}">Recover Password</a>
           <h3>IMPORTANT!</h3>
           <p>The link expires in one hour</p>
         </div>
         `
       );
       req.logger.info('Successful email sending');
-      res.status(200).send({ message: 'Successful email sending' });
+      res.status(200).redirect('/');
     } catch (error) {
       next(
         res.status(error.statusCode || 500).json({ message: error.message })
@@ -52,9 +52,11 @@ router.post('/recover-password', async (req, res, next) => {
 router.post('/new-password', async (req, res, next) => {
   try {
     const {
-      body: { newPass, repNewPass, token },
+      body: { newPass, repNewPass },
+      params: { token },
     } = req;
-
+    console.log('token', token);
+    
     const decodedToken = jwt.verify(token, JWT_SECRET)
     const uid = decodedToken.user
     const user = await UserController.getById(uid)
@@ -70,7 +72,7 @@ router.post('/new-password', async (req, res, next) => {
     const currentTimestamp = Math.floor(Date.now() / 1000);
 
     if (decodedToken.exp < currentTimestamp) {
-      return res.redirect('http://localhost:8080/recoverPass.html');
+      return res.redirect('http://localhost:8080/recoverPass');
     }
    
     const verifyPass = isValidPassword(newPass, user)
@@ -87,49 +89,12 @@ router.post('/new-password', async (req, res, next) => {
     user.resetPasswordToken = undefined;
     await user.save();
 
-    res.status(200).json({ message: 'Password reset successful' });
+    req.logger.info('Password reset successfuly');
+    res.status(200).redirect('/');
 
   } catch (error) {
     next(res.status(error.statusCode || 500).json({ message: error.message }));
   }
 });
-
-/* router.get('/recover-password/:token', async (req, res, next) => {
-  try {
-    const {
-      body: { newPass },
-      params: { token },
-    } = req;
-
-    const decodedToken = jwt.verify(token, JWT_SECRET)
-    const uid = decodedToken.user
-    const user = await UserController.getById(uid)
-
-    if (!user) {
-      throw new BadRequest('Invalid or expired reset token');
-    }
-
-    const currentTimestamp = Math.floor(Date.now() / 1000);
-
-    if (decodedToken.exp < currentTimestamp) {
-      return res.redirect('http://localhost:8080/recoverPass.html');
-    }
-   
-    const verifyPass = isValidPassword(newPass, user)
-
-    if (verifyPass === true){
-      throw new BadRequest('The new password cant be the same as the previous one');
-    }
-
-    user.password = createHash(newPass);
-    user.resetPasswordToken = undefined;
-    await user.save();
-
-    res.status(200).json({ message: 'Password reset successful' });
-
-  } catch (error) {
-    next(res.status(error.statusCode || 500).json({ message: error.message }));
-  }
-}); */
 
 export default router;

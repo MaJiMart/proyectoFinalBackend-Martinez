@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
+import handlebars from 'express-handlebars';
 import cors from 'cors';
 import { initPassport } from './config/passport.config.js';
 import { __dirname, COOKIE_SECRET, Exception } from './utilities.js';
@@ -10,7 +11,12 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 /* Views */
 import indexRouter from './routers/views/indexRouter.js';
-import registerRouter from './routers/views/registerRouter.js';
+import productsRouter from './routers/views/productsRouter.js';
+import cartRouter from './routers/views/cartRouter.js';
+import registerRouter from './routers/views/registerRouter.js'
+import adminProdRouter from './routers/views/adminProdRouter.js';
+import recoverPassRouter from './routers/views/recoverPassRouter.js';
+import newPassRouter from './routers/views/newPassRouter.js';
 /* Apis */
 import authApiRouter from './routers/api/authApiRouter.js';
 import usersApiRouter from './routers/api/usersApiRouter.js';
@@ -55,9 +61,13 @@ const swaggerOptions = {
 
 const specs = swaggerJsDoc(swaggerOptions);
 
+app.engine('handlebars', handlebars.engine());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use('/', indexRouter, registerRouter, mockprodApiRouter, loggersApiRouter);
+app.use('/', indexRouter, registerRouter, productsRouter, cartRouter, adminProdRouter, recoverPassRouter, newPassRouter, mockprodApiRouter, loggersApiRouter);
 app.use('/api', productsApiRouter, cartsApiRouter, authApiRouter, usersApiRouter, notificationsApiRouter, recoveryPassApiRouter);
 
 app.use((error, req, res, next) => {

@@ -29,7 +29,7 @@ router.post('/auth/register', async (req, res) => {
   const cartDao = new CartsDao();
   await cartDao.createCart({ user: user._id });
   req.logger.info('Successfully registered user');
-  res.status(201).send({ message: 'Successfully registered user' });
+  res.status(201).redirect('/');
 });
 
 router.post('/auth/login', async (req, res) => {
@@ -61,13 +61,14 @@ router.post('/auth/login', async (req, res) => {
   
   const token = tokenGenerator(user);
 
+  req.logger.info('Successfully login');
   res
     .cookie('access_token', token, {
       maxAge: 600000,
       httpOnly: true
     })
     .status(200)
-    .json({ status: 'success' });
+    .redirect('/products');
 });
 
 export default router;

@@ -1,0 +1,22 @@
+<h1>Welcome to the shop</h1>
+
+<p>Here you will find ecofriendly products as well as advice that will help you
+  on a daily basis. We hope you enjoy this space</p>
+
+<article>
+  <form action='/api/auth/login' method='post'>
+    <header><h3>Login:</h3></header>
+    <input type='email' name='email' placeholder='Email' required />
+    <input type='password' name='password' placeholder='Password' required />
+    <footer>
+      <input type='submit' value='Login' class='outline' id='btngral'/>
+      <div id='recpass'>
+      <a href='/recoverPass' >Forgot your password?</a>
+      </div>
+    </footer>
+    <div id='singUp'>
+      <h3>Register:</h3>
+        <a href='/register' >Sing up here!</a>
+    </div>
+  </form>
+</article>

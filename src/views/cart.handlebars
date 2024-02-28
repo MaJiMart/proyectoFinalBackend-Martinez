@@ -1,0 +1,17 @@
+<h1>Cart</h1>
+
+<p>Selected products:</p>
+<div id="divCarts">
+    <div id="divProducts">
+        {{#each payload}}
+        <div>
+            <h3>{{this.product.title}}</h3>
+            <p>Price: {{this.product.price}}</p>
+            <p>Quantity: {{this.quantity}}</p>
+        </div>
+        <input id="deleteButton" type="submit" value="Delete Product" class="outline">
+        {{/each}}
+    </div>
+    <input id="emptyButton" type="submit" value="Empty Cart" class="outline">
+</div>
+

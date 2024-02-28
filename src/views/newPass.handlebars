@@ -1,0 +1,12 @@
+<h1>New password:</h1>
+    <p>Please enter the new password:</p>
+    <article>
+      <form id='formNewPass' action='/api/new-password' method='post'>
+        <input type='password' id='newPass' name='password' placeholder='Password' required/>
+        <input type='password' id='repNewPass' name='password' placeholder='Repeat password' required/>
+        <input type='hidden' name='token' value='{{token}}'>
+        <footer>
+          <input type='submit' value='Ok' class='outline' id='btnnew' />
+        </footer>
+      </form>
+    </article>

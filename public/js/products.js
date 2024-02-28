@@ -1,19 +1,3 @@
-(function () {
-    fetch('/current')
-    .then((response) => response.json())
-    .then((data) => {
-      const htmlText = 
-      `<h1>: Hi ${data.first_name}!</h1>
-      <p>Products:</p>
-      <p>These are our available products:</p>`
-      const span = document.getElementById('spanProducts');
-      span.innerHTML = htmlText;
-    })
-    .catch((error) => {
-      console.error('error', error)
-    })
-  })();
-
 document.addEventListener("DOMContentLoaded", function () {
     const categorySelect = document.getElementById("categorySelect");
     const sortSelect = document.getElementById("sortSelect");

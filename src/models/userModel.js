@@ -23,9 +23,8 @@ const userSchema = new Schema(
     age: { type: Number },
     password: { type: String, require: true },
     resetPasswordToken: { type: String },
-    cart: {
-      type: [cartItemSchema],
-      default: [],
+    cart:{
+      type: [cartItemSchema]
     },
     role: { type: String, default: 'user', enum: ['user', 'admin', 'premium'] },
     provider: { type: String, default: 'local' },

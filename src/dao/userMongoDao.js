@@ -13,9 +13,6 @@ export default class UserDao {
 
   async createUser(data) {
     const user = UserModel.create(data);
-    const cartDao = new CartsDao();
-    await cartDao.createCart({ user: user._id });
-
     return user;
   }
 

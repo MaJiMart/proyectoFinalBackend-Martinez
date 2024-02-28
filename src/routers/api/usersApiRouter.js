@@ -20,7 +20,7 @@ router.get('/users', authenticationMidd('jwt'), authorizationMidd('admin'), asyn
 router.post('/users', authenticationMidd('jwt'), authorizationMidd('admin'),  async (req, res, next) => {
     try {
       const {
-        body: { first_name, last_name, email, age, password, role },
+        body: { first_name, last_name, email, age, password, role, cart },
       } = req;
 
       await UserController.createUser({

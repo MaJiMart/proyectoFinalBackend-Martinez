@@ -15,7 +15,6 @@ export default class UserService {
 
   static async createUser(payload) {
     const user = await userRepository.createUser(payload);
-    console.log('Successfully created user');
     return user;
   }
 
