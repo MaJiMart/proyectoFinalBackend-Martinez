@@ -4,11 +4,11 @@
         <div>User's type: {{userData.role}}</div>
     </div>
     <div id="buttonShop">
-        <a href="/cart" role="button" id="cartButton" class="outline">Cart</a>
+        <a href="/cart/{{cid}}" role="button" id="cartButton" class="outline" ><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="2 2 20 20" fill="none" stroke="#d87093" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg></a>
     </div> 
-    <div id="buttonOut">
+    {{!-- <div id="buttonOut">
         <a href="/api/sessions/logout" role="button" id="logoutButton" class="outline">Logout</a>
-    </div> 
+    </div>  --}}
 </header>
 
 <h1>Hi {{userData.first_name}}!</h1>

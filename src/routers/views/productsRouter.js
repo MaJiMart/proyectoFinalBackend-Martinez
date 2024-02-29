@@ -17,14 +17,15 @@ router.get("/products", authenticationMidd('jwt'), async (req, res, next) => {
     }
     const result = await ProductModel.paginate(criteria, ops);
     let userData = req.user;
-    res.render("products", buildResponse({ ...result }, { category, userData }));
+    const cid = userData.cart[0].cart
+    res.render("products", buildResponse({ ...result }, { category, userData, cid }));
     
     } catch (error) {
       next(res.status(error.statusCode || 500).json({ message: error.message }));
   }
 });
 
-const buildResponse = (data, {category, userData}) => {
+const buildResponse = (data, {category, userData, cid}) => {
   return {
     status: "success",
     payload: data.docs.map((product) => product.toJSON()),
@@ -49,6 +50,7 @@ const buildResponse = (data, {category, userData}) => {
         }`
       : "",
       userData: userData,
+      cid: cid,
       category: category,
   };
 };

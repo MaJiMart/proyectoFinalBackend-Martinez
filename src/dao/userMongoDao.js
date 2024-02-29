@@ -1,6 +1,4 @@
 import UserModel from '../models/userModel.js';
-import CartsDao from './cartMongoDao.js';
-
 
 export default class UserDao {
   getUsers(criteria = {}) {

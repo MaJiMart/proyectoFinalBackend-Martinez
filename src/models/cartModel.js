@@ -13,12 +13,4 @@ const cartSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-/* cartSchema
-  .pre('find', function () {
-    this.populate('products.productId');
-  })
-  .pre('findById', function () {
-    this.populate('products.product._id');
-  }); */
-
 export default mongoose.model('Carts', cartSchema);

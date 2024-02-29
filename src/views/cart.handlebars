@@ -1,17 +1,30 @@
 <h1>Cart</h1>
 
-<p>Selected products:</p>
+<h3>Selected products:</h3>
 <div id="divCarts">
+    <header>
+        <p>Product</p>
+        <p>Price</p>
+        <p>Quantity</p>
+    </header>
     <div id="divProducts">
         {{#each payload}}
         <div>
-            <h3>{{this.product.title}}</h3>
-            <p>Price: {{this.product.price}}</p>
-            <p>Quantity: {{this.quantity}}</p>
+            <p>{{product.title}}</p>
+            <p>{{product.price}}€</p>
+            <p>{{quantity}}</p>
         </div>
-        <input id="deleteButton" type="submit" value="Delete Product" class="outline">
+        <a href="" id="deleteButton" type="submit" value="Delete Product" ><svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="2 2 20 20" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a>
         {{/each}}
     </div>
-    <input id="emptyButton" type="submit" value="Empty Cart" class="outline">
+    <footer>
+        <div>
+            <input id="emptyButton" type="submit" value="Empty Cart" class="outline">
+            <input id="finishButton" type="submit" value="Buy" class="outline">
+        </div>
+        <div>
+            <a href="/products"><svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8l-4 4 4 4M16 12H9"/></svg> Seguir Comprando</a>
+        </div>
+    </footer>
 </div>
 

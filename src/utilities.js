@@ -48,13 +48,14 @@ export const JWT_SECRET = config.jwtSecret;
 export const COOKIE_SECRET = config.cookieSecret;
 
 export const tokenGenerator = (user) => {
-  const { _id, first_name, last_name, email, role } = user;
+  const { _id, first_name, last_name, email, role, cart } = user;
   const payload = {
     id: _id,
     first_name,
     last_name,
     email,
     role,
+    cart,
   };
   return jwt.sign(payload, JWT_SECRET, { expiresIn: '10m' });
 };

@@ -14,7 +14,6 @@ import indexRouter from './routers/views/indexRouter.js';
 import productsRouter from './routers/views/productsRouter.js';
 import cartRouter from './routers/views/cartRouter.js';
 import registerRouter from './routers/views/registerRouter.js'
-import adminProdRouter from './routers/views/adminProdRouter.js';
 import recoverPassRouter from './routers/views/recoverPassRouter.js';
 import newPassRouter from './routers/views/newPassRouter.js';
 /* Apis */
@@ -67,7 +66,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use('/', indexRouter, registerRouter, productsRouter, cartRouter, adminProdRouter, recoverPassRouter, newPassRouter, mockprodApiRouter, loggersApiRouter);
+app.use('/', indexRouter, registerRouter, productsRouter, cartRouter, recoverPassRouter, newPassRouter, mockprodApiRouter, loggersApiRouter);
 app.use('/api', productsApiRouter, cartsApiRouter, authApiRouter, usersApiRouter, notificationsApiRouter, recoveryPassApiRouter);
 
 app.use((error, req, res, next) => {
