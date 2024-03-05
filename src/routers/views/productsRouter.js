@@ -18,8 +18,8 @@ router.get("/products", authenticationMidd('jwt'), async (req, res, next) => {
     const result = await ProductModel.paginate(criteria, ops);
     let userData = req.user;
     const cid = userData.cart[0].cart
+
     res.render("products", buildResponse({ ...result }, { category, userData, cid }));
-    
     } catch (error) {
       next(res.status(error.statusCode || 500).json({ message: error.message }));
   }

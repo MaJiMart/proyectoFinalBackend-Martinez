@@ -1,0 +1,75 @@
+<header id="info">
+    <div id="infoUser">
+        <div>{{userData.first_name}} {{userData.last_name}}</div>
+        <div>User's type: {{userData.role}}</div>
+    </div>
+    <div id="buttonOut">
+        <a href="" role="button" id="logoutButton" class="outline">Logout</a>
+    </div> 
+</header>
+<h1>Welcome to the users admin zone</h1>
+<p>From here you will be able to view, modify the role and delete a user</p>
+
+  {{#if isAdmin}}
+  <div id='divUsers'>
+    <h3>Users:</h3>
+    <div>
+      <p>Change Role: <a href="#editUser"><svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon></svg></a></p>
+      <p>Delete: <a href="#deleteUser"><svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="2 2 20 20" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></p>
+    </div>
+  </div>
+  <article>
+    <table id="usersTable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Last conection</th>
+    </tr>
+    {{#each payload}}
+      <tr>
+        <td>{{this._id}}</td>
+        <td>{{this.first_name}} {{this.last_name}}</td>
+        <td>{{this.age}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.role}}</td>
+        <td>{{this.last_connection}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</article>
+<div id='handleUsers'>
+  <h5>Edit role user:</h5>
+  <p>Change the user role (user to premium or premium to user)</p>
+  <form id='editUser' action="http://localhost:8080/api/users/premium/:uid" method="PUT">
+    <input id='idUser' name="uid" type="text" required placeholder="ID of the user you want to edit">
+    <input id="editButton" type="submit" value="Change role" class="outline">
+  </form>
+
+  <h5>Upload documents:</h5>
+  <p>Remember that if you want to change a user's role to premium you must upload the following documentation: ID, Address Proof, Account Status.</p>
+  <form id='uploadDoc' action="/api/users/:uid/documents" method="POST">
+      <input id='idUser' name="uid" type="text" required placeholder="ID of the user">
+      <input id='upDoc' name="upDoc" type="file" required>
+      <input id="upButton" type="submit" value="Upload document" class="outline">
+  </form>
+
+  <h5>Delete a user:</h5>
+  <form id='deleteUser' action="/api/users/:uid" method="DELETE">
+    <input id='idUser' name="uid" type="text" required placeholder="ID of the user you want to delete">
+    <input id="deleteButton" type="submit" value="Remove user" class="outline">
+  </form>
+</div>
+<div id='up'>
+<a href="#info"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V9"/></svg></a>
+</div>
+  {{else}}
+    <div>
+      <p>Sorry, you dont have permission to view the user list</p>
+      <a href="/products"><svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8l-4 4 4 4M16 12H9"/></svg> Go back to the product zone</a>
+    </div>
+  {{/if}}
+
+<script src="/js/users.js"></script>

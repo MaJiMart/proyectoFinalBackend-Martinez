@@ -2,13 +2,14 @@
     <div id="infoUser">
         <div>{{userData.first_name}} {{userData.last_name}}</div>
         <div>User's type: {{userData.role}}</div>
+        <input id='datacid' type="text" value='{{cid}}'>
     </div>
     <div id="buttonShop">
         <a href="/cart/{{cid}}" role="button" id="cartButton" class="outline" ><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="2 2 20 20" fill="none" stroke="#d87093" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg></a>
     </div> 
-    {{!-- <div id="buttonOut">
-        <a href="/api/sessions/logout" role="button" id="logoutButton" class="outline">Logout</a>
-    </div>  --}}
+    <div id="buttonOut">
+        <a href="/" role="button" id="logoutButton" class="outline">Logout</a>
+    </div> 
 </header>
 
 <h1>Hi {{userData.first_name}}!</h1>
@@ -50,7 +51,7 @@
 <a href="{{nextLink}}" role="button" {{#unless hasNextPage}}disabled{{/unless}}>Next</a>
 </div>
 
-<script src="js/products.js"></script>
+<script src="/js/products.js"></script>
 
 
 
