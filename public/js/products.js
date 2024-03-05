@@ -59,4 +59,25 @@ document.addEventListener('DOMContentLoaded', function () {
       handleAddToCart(productId, cid);
     });
   });
+
+  //Logout
+  const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        fetch('/api/auth/logout', {
+          method: 'POST',
+          credentials: 'same-origin'
+        })
+        .then(response => {
+          if (response.redirected) {
+            window.location.href = response.url;
+          }
+        })
+        .catch(error => {
+          console.error('Error during logout:', error);
+        });
+      });
+    }
 });

@@ -49,7 +49,13 @@ router.post('/auth/login', async (req, res, next) => {
       req.logger.error('Wrong email or password');
       return res.status(401).send({ message: 'Wrong email or password' });
     }
-  
+    
+    let redirectPath = '/products';
+
+    if (user.role === 'admin') {
+      redirectPath = '/users';
+    }
+
     user.last_connection = new Date();
     await user.save();
     
@@ -62,13 +68,24 @@ router.post('/auth/login', async (req, res, next) => {
         httpOnly: true
       })
       .status(200)
-      .redirect('/products');
+      .redirect(redirectPath);
   } catch (error) {
     next(
       res.status(error.statusCode || 500).json({ message: error.message })
     );
   }
-  
+});
+
+router.post('/auth/logout', async (req, res, next) => {
+  try {
+    res.clearCookie('access_token');
+    req.logger.info('Successfully logged out');
+    res.redirect('/');
+  } catch (error) {
+    next(
+      res.status(error.statusCode || 500).json({ message: error.message })
+    );
+  }
 });
 
 export default router;
