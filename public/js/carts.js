@@ -39,14 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const pid = this.getAttribute('data-pid');
       try {
         const response = await fetch(
-          `http://localhost:8080/api/carts/${cid}/products/${pid}`,
+          `/api/carts/${cid}/products/${pid}`,
           {
             method: 'DELETE',
           }
         );
         if (response.ok) {
           this.closest('div').remove();
-          window.location.href = `http://localhost:8080/cart/${cid}`;
+          window.location.href = `/cart/${cid}`;
         } else {
           console.error('Failed to delete product:', response.statusText);
         }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cid = this.getAttribute('data-cid');
     console.log(cid);
     try {
-      const response = await fetch(`http://localhost:8080/api/carts/${cid}`, {
+      const response = await fetch(`/api/carts/${cid}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/${cid}/purchase`,
+        `/api/carts/${cid}/purchase`,
         {
           method: 'POST',
           headers: {
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (response.ok) {
         console.log('Compra realizada con éxito');
         alert('Compra realizada con éxito');
-        window.location.href = 'http://localhost:8080/products';
+        window.location.href = '/products';
       } else {
         console.error('Error al realizar la compra:', response.statusText);
       }
