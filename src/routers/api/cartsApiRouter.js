@@ -111,8 +111,9 @@ router.post('/carts/:cid/purchase', authenticationMidd('jwt'), authorizationMidd
     } = req;
     
     await CartController.purchaseCart(cid, user.email)
+    await CartController.emptyCart(cid)
     req.logger.info('Purchase completed successfully');
-    res.status(201).send({ message: 'Purchase completed successfully' })
+    res.status(201).redirect('/products')
   } catch (error) {
     next(res.status(error.statusCode || 500).json({ message: error.message }))
   }

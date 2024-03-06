@@ -1,9 +1,10 @@
 import CartService from '../services/cartService.js';
 import ProductService from '../services/productService.js';
 import ProductController from '../controllers/productController.js'
-import UserService from '../services/userService.js';
 import UserController from '../controllers/userContoller.js';
 import TicketController from './ticketController.js';
+import MailService from '../services/mailService.js';
+import { logger } from '../config/logger.js';
 import { NotFound, Exception, generateUniqueCode } from '../utilities.js';
 
 export default class CartController {
@@ -92,7 +93,6 @@ export default class CartController {
       const cart = await CartController.getCart(cid);
       const userEmailAddress = user;
       const failedProducts = [];
-      const purchasedProducts = [];
       let amount = 0;
 
       for (const cartProduct of cart.products) {
@@ -101,21 +101,6 @@ export default class CartController {
         product.stock -= cartProduct.quantity;
         await product.save()
         amount += product.price * cartProduct.quantity;
-        
-        /* if (product.stock >= cartProduct.quantity) {
-          product.stock -= cartProduct.quantity;
-          await product.save();
-
-          purchasedProducts.push({
-            product: cartProduct.product,
-            quantity: cartProduct.quantity,
-          });
-
-          amount += product.price * cartProduct.quantity;
-          console.log(amount);
-        } else {
-          failedProducts.push(cartProduct.product);
-        } */
       }
 
       const remainingProducts = cart.products.filter(
@@ -131,7 +116,24 @@ export default class CartController {
         amount: amount,
         purchaser: userEmailAddress
       });
-      console.log('Ticket:', ticket);
+
+      MailService.sendEmail(
+        userEmailAddress,
+        'Purchase ticket',
+        `
+          <div>
+            <h1>Hi, thanks for your purchase!</h1>
+            <p>Here is your receipt:</p>
+            <p>Ticket:</p>
+            <p>Code: ${ticket.code}</p>
+            <p>Purchaser: ${ticket.purchaser}</p>
+            <p>Amount: ${ticket.amount}</p>
+            <br>Greetings,</br>
+          </div>
+          `
+      );
+
+      logger.info('Ticket generated and sent successfully');
     } catch (error) {
       throw new Exception(
         `Error processing the purchase: ${error.message}`,

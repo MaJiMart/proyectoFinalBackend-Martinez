@@ -98,7 +98,7 @@ router.delete('/users/:uid', authenticationMidd('jwt'), authorizationMidd('admin
   }
 );
 
-router.put('/users/premium/:uid', authenticationMidd('jwt'), authorizationMidd(['user', 'premium']), async (req, res, next) => {
+router.put('/users/premium/:uid', authenticationMidd('jwt'), authorizationMidd(['user', 'premium', 'admin']), async (req, res, next) => {
     try {
       const {
         params: { uid },
@@ -114,7 +114,7 @@ router.put('/users/premium/:uid', authenticationMidd('jwt'), authorizationMidd([
   }
 );
 
-router.post('/users/:uid/documents', authenticationMidd('jwt'), authorizationMidd('user'), uploader.single('documents'), async (req, res, next) => {
+router.post('/users/:uid/documents', authenticationMidd('jwt'), authorizationMidd(['user', 'admin']), uploader.single('documents'), async (req, res, next) => {
     try {
       const {
         params: { uid },

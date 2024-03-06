@@ -233,7 +233,7 @@ select {
     color: gray;
 }
 
-.container #divCarts #divProducts #deleteButton{
+.container #divCarts #divProducts .deleteButton{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -249,23 +249,26 @@ select {
     width: 100%;
     margin-top: 1rem;
 }
-.container #divCarts footer a{
+.container #divCarts footer div a{
     width: 100%;
     text-align: right;
     font-size: 1.2rem;
     color: palevioletred;
 }
 
-.container #divCarts footer #emptyButton{
+.container #divCarts footer #btns #emptyButton{
     width: 15rem;
+    height: 2rem;
     margin-right: 3rem;
+    text-align: center;
     border-style: solid;
     border-width: 1px;
     border-color: gray;
     color: gray;
 }
 
-.container #divCarts footer #finishButton{
+.container #divCarts footer #btns #finishButton{
+    text-align: center;
     border-style: solid;
     border-width: 1px;
     border-color: palevioletred;
@@ -329,6 +332,23 @@ select {
     color: aliceblue;
 }
 
+.container #handleUsers #uploadDoc{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container #handleUsers #uploadDoc p{
+    margin-top: 0.3rem;
+    padding: 0.5rem;
+    text-align: right;
+}
+
+.container #handleUsers #uploadDoc #docType{
+    width: 15rem;
+    height: 3rem;
+    font-size: 1rem;
+}
+
 .container #handleUsers #uploadDoc #upDoc{
     width: 23rem;
 }
@@ -343,15 +363,23 @@ select {
     color: aliceblue;
 }
 
-.container #handleUsers #deleteUser #deleteButton{
+.container #handleUsers #deleteUserForm #deleteButton{
     border-color: rgb(184, 7, 45);
     border-width: 2px;
     color: rgb(184, 7, 45);
 }
 
-.container #handleUsers #deleteUser #deleteButton:hover{
+.container #handleUsers #deleteUserForm #deleteButton:hover{
     background-color: rgb(184, 7, 45);
     color: aliceblue;
+}
+
+.container #handleUsers div p{
+    color: gray;
+}
+
+.container #handleUsers div p #delInactives{
+    color: rgb(184, 7, 45);
 }
 
 .container #up{
