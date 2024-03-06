@@ -29,7 +29,7 @@ router.get('/products/:pid', async (req, res, next) => {
 router.post('/products', authenticationMidd('jwt'), authorizationMidd(['admin', 'premium']), async (req, res, next) => {
     try {
       const {
-        body: { title, description, code, price, stock },
+        body: { title, description, code, price, stock, category},
         user,
       } = req;
 

@@ -180,7 +180,6 @@ select {
     border-style: solid;
     border-width: 1px;
     border-color: gray;
-    
 }
 
 .container #divCarts header p{
@@ -363,6 +362,17 @@ select {
     color: aliceblue;
 }
 
+.container #handleUsers #warning{
+    background-color: rgba(184, 7, 45, 0.050);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 20px;
+}
+
+.container #handleUsers #deleteUserForm #idUserDel{
+    background-color: rgba(184, 7, 45, 0.050);
+}
+
 .container #handleUsers #deleteUserForm #deleteButton{
     border-color: rgb(184, 7, 45);
     border-width: 2px;
@@ -375,7 +385,7 @@ select {
 }
 
 .container #handleUsers div p{
-    color: gray;
+    color: aliceblue;
 }
 
 .container #handleUsers div p #delInactives{

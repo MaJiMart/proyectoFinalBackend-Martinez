@@ -61,18 +61,19 @@
       <input id='idUserDoc' type="text" required placeholder="ID of the user">
       <input id="upButton" type="submit" value="Upload document" class="outline">
   </form>
+  <div id='warning'>
+    <h5>Delete a user:</h5>
+    <form id='deleteUserForm'>
+      <input id='idUserDel' type="text" required placeholder="ID of the user you want to delete">
+      <input id="deleteButton" type="submit" value="Remove user" class="outline">
+    </form>
 
-  <h5>Delete a user:</h5>
-  <form id='deleteUserForm'>
-    <input id='idUserDel' name="uid" type="text" required placeholder="ID of the user you want to delete">
-    <input id="deleteButton" type="submit" value="Remove user" class="outline">
-</form>
-
-  <h5>Delete inactive users:</h5>
-  <div>
-  <p>CAUTION! The deletion of users will be permanent, each of them will receive an email informing them that their account has been deleted from our database. If you want to continue click on the following link: <a href="#" id='delInactives'>REMOVE INACTIVES USERS</a></p>
+    <h5>Delete inactive users:</h5>
+    <div>
+      <p>CAUTION! The deletion of users will be permanent, each of them will receive an email informing them that their account has been deleted from our database. If you want to continue click on the following link: <a href="#" id='delInactives'>REMOVE INACTIVES USERS</a></p>
+    </div>
   </div>
-
+  
 </div>
 <div id='up'>
 <a href="#info"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d87093" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V9"/></svg></a>

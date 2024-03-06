@@ -1,6 +1,7 @@
 import ProductService from '../services/productService.js';
 import { Exception, NotFound } from '../utilities.js';
 import UserController from './userContoller.js';
+import MailService from '../services/mailService.js';
 
 export default class ProductController {
   static async getProducts(query = {}) {
@@ -52,14 +53,25 @@ export default class ProductController {
   static async deleteProduct(pid, user) {
     try {
       const owner = await UserController.getById(user)
-      
+      const product = await ProductController.getProdById(pid);
       if (owner.role === 'admin') {
-        await ProductController.getProdById(pid);
+        if (product.owner.toString() !== owner.id) {
+          const idowner = product.owner.toString()
+          const powner = await UserController.getById(idowner)
+          MailService.sendEmail(
+            powner.email,
+            'Your product has been removed',
+            `
+              <div>
+                <h1>Hi ${powner.first_name},</h1>
+                <p>We want to inform you that your product ${product.title} has been deleted by an administrator.</p>
+                <br>Greetings,</br>
+              </div> 
+            `,
+          );
+        }
         await ProductService.deleteProduct(pid);
-
-      }else if (owner.role === 'premium') {
-        const product = await ProductController.getProdById(pid);
-        
+      }else if (owner.role === 'premium') {      
         if (product.owner.toString() === owner.id) {
           await ProductService.deleteProduct(pid);
         }else {
