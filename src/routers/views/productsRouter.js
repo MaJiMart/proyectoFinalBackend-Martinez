@@ -36,14 +36,14 @@ const buildResponse = (data, {category, userData, cid}) => {
     hasPrevPage: data.hasPrevPage,
     hasNextPage: data.hasNextPage,
     prevLink: data.hasPrevPage
-      ? `http://localhost:8080/products?limit=${data.limit}&page=${
+      ? `/products?limit=${data.limit}&page=${
           data.prevPage
         }${data.category ? `&category=${data.category}` : ""}${
           data.sort ? `&sort=${data.sort}` : ""
         }`
       : "",
     nextLink: data.hasNextPage
-      ? `http://localhost:8080/products?limit=${data.limit}&page=${
+      ? `/products?limit=${data.limit}&page=${
           data.nextPage
         }${data.category ? `&category=${data.category}` : ""}${
           data.sort ? `&sort=${data.sort}` : ""
