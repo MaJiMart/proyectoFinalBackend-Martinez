@@ -79,7 +79,7 @@ router.post('/auth/login', async (req, res, next) => {
 router.post('/auth/logout', async (req, res, next) => {
   try {
     res.clearCookie('access_token');
-    req.logger.info('Successfully logged out');
+    req.logger.info('Successfully logout');
     res.redirect('/');
   } catch (error) {
     next(
