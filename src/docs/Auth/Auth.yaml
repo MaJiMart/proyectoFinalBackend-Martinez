@@ -1,0 +1,84 @@
+paths:
+  /api/auth/register:
+    post:
+      summary: User's register
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/requestBodies/register'
+      responses:
+        201:
+          description: Successfully registered user
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/requestBodies/register'
+        400:
+          description: Fields required or User already registered
+        500:
+          description: Internal Server Error
+
+  /api/auth/login:
+    post:
+      summary: User's login
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/requestBodies/login'
+      responses:
+        200:
+          description: Successfully login
+          content:
+            aplication/json:
+              schema:
+                  $ref: '#/components/requestBodies/login'
+        404:
+          description: Unregistered user
+        500:
+          description: Internal Server Error
+
+components:
+  requestBodies:
+    register:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: User name.
+        last_name:
+          type: string
+          description: User last name.
+        email:
+          type: string
+          description: User email.
+        password:
+          type: string
+          description: User password.
+
+      example:
+        first_name: Juan
+        last_name: DePrueba
+        email: jdp@mail.com
+        password: 9876erf
+    
+    login:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email.
+        password:
+          type: string
+          description: User password.
+        
+      example:
+        email: juana22@mail.com
+        password: '1234'

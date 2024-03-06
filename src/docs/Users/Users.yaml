@@ -154,8 +154,8 @@ components:
           type: string
           description: Password recovery token provided by JWT
         cart:
-          type: string
-          description: Cart ID
+          type: Array
+          description: Cart ObjectID
         role:
           type: string
           description: Role with which the user registers. User, Premium or Admin
