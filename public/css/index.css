@@ -402,3 +402,30 @@ select {
     display: flex;
     justify-content: flex-end;
 }
+
+/* New Pasword */
+.container #artnewpass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container #artnewpass #formNewPass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.container #artnewpass #formNewPass footer #btnnew{
+    width: 15rem;
+    border-color: palevioletred;
+    color: palevioletred;
+}
+
+.container #artnewpass #formNewPass footer #btnnew:hover{
+    background-color: palevioletred;
+    color: aliceblue;
+}

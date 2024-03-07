@@ -31,7 +31,7 @@ router.post('/recover-password', async (req, res, next) => {
         <div>
           <h1>Hi ${user.first_name}</h1>
           <p>With all the passwords we currently have, it is normal that we forget some, don't worry, to recover it click on the following link:</p>
-          <a href="http://localhost:8080/new-password?token=${recPassToken}">Recover Password</a>
+          <a href="https://proyectofinalbackend-martinez-production.up.railway.app/new-password?token=${recPassToken}">Recover Password</a>
           <h3>IMPORTANT!</h3>
           <p>The link expires in one hour</p>
         </div>
@@ -52,10 +52,8 @@ router.post('/recover-password', async (req, res, next) => {
 router.post('/new-password', async (req, res, next) => {
   try {
     const {
-      body: { newPass, repNewPass },
-      params: { token },
+      body: { newPass, repNewPass, token },
     } = req;
-    console.log('token', token);
     
     const decodedToken = jwt.verify(token, JWT_SECRET)
     const uid = decodedToken.user
@@ -72,7 +70,7 @@ router.post('/new-password', async (req, res, next) => {
     const currentTimestamp = Math.floor(Date.now() / 1000);
 
     if (decodedToken.exp < currentTimestamp) {
-      return res.redirect('http://localhost:8080/recoverPass');
+      return res.redirect('/recoverPass');
     }
    
     const verifyPass = isValidPassword(newPass, user)
