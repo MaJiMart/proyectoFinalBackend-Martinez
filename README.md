@@ -1,6 +1,6 @@
 ![Proyecto Final Backend](https://github.com/MaJiMart/proyectoFinalBackend-Martinez/assets/116087573/375a40dd-9adf-4491-9e8b-ccd503fdb314)
 
-##📌"Proyecto ecommerce"
+<h1>📌"Proyecto ecommerce"</h1>
 
 <br>Consigna:</br>
 <p>Ecommerce funcional, manejo de diferentes tipos de usuarios, productos, carritos, conexión a base de datos</p>
