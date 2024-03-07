@@ -1,3 +1,5 @@
+import { logger } from '../../src/config/logger.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   const categorySelect = document.getElementById('categorySelect');
   const sortSelect = document.getElementById('sortSelect');
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error(errorData.message);
       }
     } catch (error) {
-      console.error('Error adding product to cart:', error.message);
+      logger.error('Error adding product to cart:', error.message);
       alert('Error adding product to cart');
     }
   };
@@ -76,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
         .catch(error => {
-          console.error('Error during logout:', error);
+          logger.error('Error during logout:', error);
         });
       });
     }

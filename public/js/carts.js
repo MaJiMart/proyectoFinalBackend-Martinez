@@ -1,3 +1,5 @@
+import { logger } from '../../src/config/logger.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   const subtotalElements = document.querySelectorAll('#divProducts > div');
 
@@ -45,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
           this.closest('div').remove();
           window.location.href = `/cart/${cid}`;
         } else {
-          console.error('Failed to delete product:', response.statusText);
+          logger.warning('Failed to delete product:', response.statusText);
         }
       } catch (error) {
-        console.error('Error deleting product:', error);
+        logger.error('Error deleting product:', error);
       }
     });
   });
@@ -58,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
   emptyButton.addEventListener('click', async function (event) {
     event.preventDefault();
     const cid = this.getAttribute('data-cid');
-    console.log(cid);
     try {
       const response = await fetch(`/api/carts/${cid}`, {
         method: 'DELETE',
@@ -70,12 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalPay = document.getElementById('totalPay');
         totalPay.textContent = 'Total to pay: €0';
 
-        console.log('Cart emptied successfully');
+        logger.info('Cart emptied successfully');
       } else {
-        console.error('Failed to empty cart:', response.statusText);
+        logger.warning('Failed to empty cart:', response.statusText);
       }
     } catch (error) {
-      console.error('Error emptying cart:', error);
+      logger.error('Error emptying cart:', error);
     }
   });
 
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     const cid = this.getAttribute('data-cid');
     if (!cid) {
-      console.error('No se pudo obtener el ID del carrito');
+      logger.error('No se pudo obtener el ID del carrito');
       return;
     }
 
@@ -107,14 +108,14 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (response.ok) {
-        console.log('Compra realizada con éxito');
+        logger.info('Compra realizada con éxito');
         alert('Compra realizada con éxito');
         window.location.href = '/products';
       } else {
-        console.error('Error al realizar la compra:', response.statusText);
+        logger.warning('Error al realizar la compra:', response.statusText);
       }
     } catch (error) {
-      console.error('Error al realizar la compra:', error);
+      logger.error('Error al realizar la compra:', error);
     }
   });
 });

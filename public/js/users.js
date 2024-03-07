@@ -1,3 +1,5 @@
+import { logger } from '../../src/config/logger.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   //Cambio de Rol
   const editUserForm = document.getElementById('editUser');
@@ -21,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
         .catch((error) => {
-          console.error('Error during request:', error);
+          logger.error('Error during request:', error);
         });
     });
   }
@@ -54,11 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Document uploaded successfully');
             window.location.reload();
           } else {
-            console.error('Error uploading document:', response.statusText);
+            logger.error('Error uploading document:', response.statusText);
           }
         })
         .catch((error) => {
-          console.error('Error uploading document:', error);
+          logger.error('Error uploading document:', error);
         });
     });
   }
@@ -83,13 +85,13 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('User successfully deleted');
             window.location.reload();
           } else {
-            console.error('Failed to delete user:', response.status);
+            logger.fatal('Failed to delete user:', response.status);
             alert('Sorry, the user couldnt be removed.');
             window.location.reload();
           }
         })
         .catch((error) => {
-          console.error('Error deleting user:', error);
+          logger.error('Error deleting user:', error);
         });
     }
   });
@@ -112,12 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Inactive users deleted successfully');
             window.location.reload();
           } else {
-            console.error('Error deleting inactive users:', response.statusText);
+            logger.error('Error deleting inactive users:', response.statusText);
             alert('There are no inactive users at this time');
           }
         })
         .catch((error) => {
-          console.error('Error deleting inactive users:', error);
+          logger.error('Error deleting inactive users:', error);
         });
     });
 
@@ -137,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
         .catch((error) => {
-          console.error('Error during logout:', error);
+          logger.error('Error during logout:', error);
         });
     });
   }
