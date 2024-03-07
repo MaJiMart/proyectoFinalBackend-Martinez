@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Event listener para el botón "Buy"
+  // Terminar compra
   const finishButton = document.getElementById('finishButton');
   finishButton.addEventListener('click', async function (event) {
     event.preventDefault();

@@ -1,3 +1,7 @@
+body {
+    background-color: #11191F;
+}
+
 #info {
     height: 6rem;
     display: flex;
