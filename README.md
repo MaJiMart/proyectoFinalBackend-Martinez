@@ -1,4 +1,4 @@
-![Proyecto Final Backend](https://github.com/MaJiMart/proyectoFinalBackend-Martinez/assets/116087573/375a40dd-9adf-4491-9e8b-ccd503fdb314)
+![Proyecto Final de Backend - Coder House](https://github.com/MaJiMart/proyectoFinalBackend-Martinez/assets/116087573/e7e9c026-8ccf-407b-ba77-f95117d5dbb6)
 
 <h1>📌"Proyecto ecommerce"</h1>
 
