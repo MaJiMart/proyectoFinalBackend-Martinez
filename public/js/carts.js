@@ -38,12 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const cid = this.getAttribute('data-cid');
       const pid = this.getAttribute('data-pid');
       try {
-        const response = await fetch(
-          `/api/carts/${cid}/products/${pid}`,
-          {
-            method: 'DELETE',
-          }
-        );
+        const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
+          method: 'DELETE',
+        });
         if (response.ok) {
           this.closest('div').remove();
           window.location.href = `/cart/${cid}`;
@@ -92,17 +89,22 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
+    const divProducts = document.getElementById('divProducts');
+    const productsCount = divProducts.querySelectorAll('div').length;
+    if (productsCount === 0) {
+      alert('Oops!\nThe cart is empty! Choose at least one product');
+      window.location.href = '/products';
+      return;
+    }
+
     try {
-      const response = await fetch(
-        `/api/carts/${cid}/purchase`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          },
-        }
-      );
+      const response = await fetch(`/api/carts/${cid}/purchase`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      });
 
       if (response.ok) {
         console.log('Compra realizada con éxito');
