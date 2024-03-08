@@ -17,6 +17,7 @@
 <P>⚡ Deploy: https://proyectofinalbackend-martinez-production.up.railway.app/</P>
 <P>⚡ Docker repository: https://hub.docker.com/repository/docker/majimart/proyectfinal/general</P>
 
+
 <p>⚙️ Dependencias:</p>
     <P>bcrypt: ^5.1.1</P>
     <P>connect-mongo: ^5.1.0</P>
