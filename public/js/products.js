@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     } catch (error) {
       console.error('Error adding product to cart:', error.message);
-      alert('Error adding product to cart');
+      alert('Sorry, this product is out of stock');
     }
   };
 
