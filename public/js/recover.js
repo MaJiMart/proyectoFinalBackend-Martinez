@@ -1,5 +1,3 @@
-import { logger } from '../../src/config/logger.js';
-
 document.addEventListener('DOMContentLoaded', function () {
   const formNewPass = document.getElementById('formNewPass');
   formNewPass.addEventListener('submit', async function (event) {
@@ -29,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       window.location.href = '/';
     } catch (error) {
-      logger.error('Error:', error.message);
+      console.error('Error:', error.message);
     }
   });
 })

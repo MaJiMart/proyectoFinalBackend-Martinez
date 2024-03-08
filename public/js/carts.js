@@ -1,5 +1,3 @@
-import { logger } from '../../src/config/logger.js';
-
 document.addEventListener('DOMContentLoaded', function () {
   const subtotalElements = document.querySelectorAll('#divProducts > div');
 
@@ -47,10 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
           this.closest('div').remove();
           window.location.href = `/cart/${cid}`;
         } else {
-          logger.warning('Failed to delete product:', response.statusText);
+          console.error('Failed to delete product:', response.statusText);
         }
       } catch (error) {
-        logger.error('Error deleting product:', error);
+        console.error('Error deleting product:', error);
       }
     });
   });
@@ -71,12 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalPay = document.getElementById('totalPay');
         totalPay.textContent = 'Total to pay: €0';
 
-        logger.info('Cart emptied successfully');
+        console.log('Cart emptied successfully');
       } else {
-        logger.warning('Failed to empty cart:', response.statusText);
+        console.error('Failed to empty cart:', response.statusText);
       }
     } catch (error) {
-      logger.error('Error emptying cart:', error);
+      console.error('Error emptying cart:', error);
     }
   });
 
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     const cid = this.getAttribute('data-cid');
     if (!cid) {
-      logger.error('No se pudo obtener el ID del carrito');
+      console.error('No se pudo obtener el ID del carrito');
       return;
     }
 
@@ -108,14 +106,14 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (response.ok) {
-        logger.info('Compra realizada con éxito');
+        console.log('Compra realizada con éxito');
         alert('Compra realizada con éxito');
         window.location.href = '/products';
       } else {
-        logger.warning('Error al realizar la compra:', response.statusText);
+        console.error('Error al realizar la compra:', response.statusText);
       }
     } catch (error) {
-      logger.error('Error al realizar la compra:', error);
+      console.error('Error al realizar la compra:', error);
     }
   });
 });
