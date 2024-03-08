@@ -15,6 +15,7 @@
 <p>✔️ Realizar el despliegue de tu aplicativo en la plataforma de tu elección (Preferentemente Railway.app, pues es la abarcada en el curso) y corroborar que se puede llevar a cabo un proceso de compra completo.</p>
 
 <P>⚡ Deploy: https://proyectofinalbackend-martinez-production.up.railway.app/</P>
+<P>⚡ Docker repository: [Docker repo](https://hub.docker.com/repository/docker/majimart/proyectfinal/general)</P>
 
 <p>⚙️ Dependencias:</p>
     <P>bcrypt: ^5.1.1</P>
